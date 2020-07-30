@@ -4,6 +4,26 @@ var postManager = function () {
    
     //YOUR CODE HERE
     /* You have to order the following posts by userId (Ascending) then add them in a list inside the 'container' */
+
+    // Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    var sortedPosts = this.posts.sort(function(a, b) {
+        if (a.userId > b.userId) return 1;
+        else return -1;
+    });
+
+    var listItems = '';
+
+    for (var post of sortedPosts) {
+        listItems = listItems + 
+            '<li>'+ 
+                '<strong>' + post.userId + ' '+ post.title + '</strong>' +
+                '<br/>' + 
+                post.body +
+            '</li>';
+    }
+
+    container.innerHTML = '<ul>' + listItems + '</ul>';
+    
 };
 
 postManager.prototype.posts = [
